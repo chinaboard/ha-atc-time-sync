@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ATC \u65f6\u95f4\u540c\u6b65",
+        "description": "\u8bbe\u7f6e BTHome \u65f6\u95f4\u4fe1\u6807\u5e7f\u64ad\uff0c\u7528\u4e8e ATC \u6e29\u5ea6\u8ba1\u81ea\u52a8\u65f6\u95f4\u540c\u6b65\u3002",
+        "data": {
+          "adapter": "\u84dd\u7259\u9002\u914d\u5668\uff08\u5982 hci0\uff09"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "ATC \u65f6\u95f4\u540c\u6b65\u8bbe\u7f6e",
+        "data": {
+          "broadcast_interval": "\u5e7f\u64ad\u95f4\u9694\uff08\u79d2\uff09"
+        }
+      }
+    }
+  }
+}

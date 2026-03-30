@@ -14,6 +14,7 @@ import time
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.event import async_track_time_interval
 
 from datetime import timedelta
@@ -65,7 +66,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     # Update sw_version in device registry on each startup
-    dev_reg = hass.helpers.device_registry.async_get(hass)
+    dev_reg = dr.async_get(hass)
     for device in dev_reg.devices.values():
         if any(DOMAIN in id[0] for id in device.identifiers):
             if device.sw_version != VERSION:

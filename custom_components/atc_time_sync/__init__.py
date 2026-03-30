@@ -20,6 +20,7 @@ from datetime import timedelta
 
 from .const import (
     DOMAIN,
+    VERSION,
     BTHOME_UUID16,
     BTHOME_INFO_UNENCRYPTED,
     BTHOME_ID_TIMESTAMP,
@@ -62,6 +63,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Set up sensor/binary_sensor platforms
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+
+    # Update sw_version in device registry on each startup
+    dev_reg = hass.helpers.device_registry.async_get(hass)
+    for device in dev_reg.devices.values():
+        if any(DOMAIN in id[0] for id in device.identifiers):
+            if device.sw_version != VERSION:
+                dev_reg.async_update_device(device.id, sw_version=VERSION)
 
     return True
 
